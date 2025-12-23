@@ -53,8 +53,8 @@ plt.ylabel('Volumen de Tráfico Total')
 plt.xlabel('GridID')
 plt.xticks(rotation=45)
 plt.tight_layout()
-plt.savefig('top_zones_historic.png')
-print("Saved: top_zones_historic.png")
+plt.savefig('imagenes/top_zones_historic.png')
+print("Saved: imagenes/top_zones_historic.png")
 
 # --- 3. DAILY PEAKS & THRESHOLD ---
 print("\n--- Analysing Daily Peaks ---")
@@ -76,8 +76,8 @@ plt.scatter(top_5_days.index, top_5_days, color='red', s=100, zorder=5, label='P
 plt.title('Evolución Diaria del Tráfico: Detección de Picos')
 plt.legend()
 plt.tight_layout()
-plt.savefig('daily_peaks_threshold.png')
-print("Saved: daily_peaks_threshold.png")
+plt.savefig('imagenes/daily_peaks_threshold.png')
+print("Saved: imagenes/daily_peaks_threshold.png")
 
 # --- 4. RELATIONAL: ZONES IN TOP DAYS ---
 print("\n--- Analysing Zones in Top Days ---")
@@ -115,8 +115,8 @@ if plot_data:
     plt.xticks(rotation=45)
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.tight_layout()
-    plt.savefig('top_days_zones.png')
-    print("Saved: top_days_zones.png")
+    plt.savefig('imagenes/top_days_zones.png')
+    print("Saved: imagenes/top_days_zones.png")
 
 # --- 5. HOURLY ANALYSIS & ZONES ---
 print("\n--- Analysing Hourly Profile and Zones ---")
@@ -131,8 +131,8 @@ hourly_avg.plot(kind='bar', color='orange', alpha=0.7)
 plt.title('Perfil Horario Promedio (0-23h)')
 plt.ylabel('Tráfico Promedio')
 plt.xlabel('Hora del Día')
-plt.savefig('hourly_profile.png')
-print("Saved: hourly_profile.png")
+plt.savefig('imagenes/hourly_profile.png')
+print("Saved: imagenes/hourly_profile.png")
 
 # Zones in Top 3 Hours
 print(f"Analysing Zones for Top 3 Hours: {top_hours[:3]}...")
@@ -165,8 +165,8 @@ if plot_data_h:
     plt.ylabel('Volumen Acumulado (Muestra)')
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.tight_layout()
-    plt.savefig('top_hours_zones.png')
-    print("Saved: top_hours_zones.png")
+    plt.savefig('imagenes/top_hours_zones.png')
+    print("Saved: imagenes/top_hours_zones.png")
 
 # --- 6. REPORT GENERATION ---
 report_content = f"""# Reporte de Análisis de Tráfico: Zonas, Días y Horas
@@ -174,25 +174,25 @@ Fecha: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
 ## 1. Top Zonas Históricas
 Las zonas (GridID) que más tráfico han acumulado en todo el histórico.
-![Top Zones](top_zones_historic.png)
+![Top Zones](imagenes/top_zones_historic.png)
 
 ## 2. Picos de Tráfico Diario
 Evolución del tráfico diario total con umbral (Mean + 2*Std).
 - **Umbral calculado**: {threshold:,.0f}
 - **Días Pico**: {', '.join(top_dates_str)}
-![Daily Peaks](daily_peaks_threshold.png)
+![Daily Peaks](imagenes/daily_peaks_threshold.png)
 
 ## 3. Desglose de Zonas en Días Pico
 ¿Qué zonas contribuyeron más al tráfico en los días de mayor demanda?
-![Top Days Zones](top_days_zones.png)
+![Top Days Zones](imagenes/top_days_zones.png)
 
 ## 4. Perfil Horario
 Tráfico promedio por hora del día.
-![Hourly Profile](hourly_profile.png)
+![Hourly Profile](imagenes/hourly_profile.png)
 
 ## 5. Top Zonas en Horas Pico
 Zonas más activas durante las horas de mayor tráfico ({', '.join(map(str, top_hours[:3]))}:00).
-![Top Hours Zones](top_hours_zones.png)
+![Top Hours Zones](imagenes/top_hours_zones.png)
 """
 
 with open('analysis_report_advanced.md', 'w', encoding='utf-8') as f:
