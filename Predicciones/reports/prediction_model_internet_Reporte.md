@@ -37,3 +37,12 @@ Esta gráfica muestra la comparación entre los datos reales (Ground Truth) y la
 
 
 ---
+
+### Scatter Plot: Real vs Predicción
+
+![### Scatter Plot: Real vs Predicción](plots/prediction_model_internet/plot_5.png)
+
+Este gráfico de dispersión enfrenta cada valor real contra su correspondiente predicción. La línea roja discontinua representa la predicción perfecta (y=x). La cercanía de los puntos a esta línea indica la precisión global del modelo; una nube de puntos estrecha sugiere un error bajo y alta correlación.
+
+
+---

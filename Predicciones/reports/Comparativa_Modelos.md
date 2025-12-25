@@ -17,48 +17,70 @@ A continuación se detallan las métricas obtenidas por cada modelo tras el entr
 
 ---
 
-## 2. Comparativa Visual: Real vs Predicción (Scatter Plots)
+## 2. Comparativa Visual: Series Temporales de 10 Nodos Aleatorios
 
-El gráfico de dispersión permite evaluar la correlación entre los valores reales y las predicciones. Una alineación estrecha con la diagonal roja (línea ideal $y=x$) indica un modelo altamente preciso.
+La visualización de series temporales para nodos seleccionados aleatoriamente permite evaluar la capacidad de los modelos para capturar la dinámica temporal del tráfico en diferentes puntos de la red.
 
-````carousel
-![GNN Internet Dense](plots/GNN_Internet_Dense/plot_2.png)
-<!-- slide -->
-![ConvLSTM](plots/ConvLSTM/plot_5.png)
-<!-- slide -->
-![prediction_model_internet](plots/prediction_model_internet/plot_1.png)
-<!-- slide -->
-![CNN Internet](plots/CNN_Internet/plot_2.png)
-<!-- slide -->
-![CNN Dense Internet](plots/CNN_Dense_Internet/plot_2.png)
-<!-- slide -->
-![GNN Internet (Baseline)](plots/GNN_Internet/plot_2.png)
-````
+### Modelos de Alto Rendimiento (GNN & ConvLSTM)
+
+| GNN Internet Dense | ConvLSTM |
+|:---:|:---:|
+| ![GNN Internet Dense](plots/GNN_Internet_Dense/plot_6.png) | ![ConvLSTM](plots/ConvLSTM/plot_5.png) |
+
+### Modelos Base y CNN
+
+| Prediction Model (Internet) | CNN Internet |
+|:---:|:---:|
+| ![prediction_model_internet](plots/prediction_model_internet/plot_4.png) | ![CNN Internet](plots/CNN_Internet/plot_4.png) |
+
+| CNN Dense Internet | GNN Internet (Baseline) |
+|:---:|:---:|
+| ![CNN Dense Internet](plots/CNN_Dense_Internet/plot_4.png) | ![GNN Internet](plots/GNN_Internet/plot_3.png) |
 
 ### Análisis de Gráficos:
-- **GNN_Internet_Dense & ConvLSTM:** Presentan las nubes de puntos más compactas alrededor de la diagonal, lo que confirma su alta puntuación en $R^2$ y bajo $RMSE$.
-- **Modelos CNN:** Muestran una mayor dispersión, especialmente en valores bajos y medios de tráfico, sugiriendo dificultades para capturar variaciones locales finas.
-- **prediction_model_internet:** Tras la corrección de variables, se observa una buena tendencia general, aunque con una varianza superior a los modelos de grafos.
+- **GNN_Internet_Dense & ConvLSTM:** Demuestran una capacidad superior para seguir las tendencias y picos de tráfico en nodos con comportamientos variados.
+- **Modelos CNN y Base:** Aunque capturan la estacionalidad general, presentan mayores desviaciones en los picos de mayor demanda.
 
 ---
 
-## 3. Curvas de Pérdida (Convergencia)
+## 3. Comparativa Visual: Real vs Predicción (Scatter Plots)
 
-La comparación de las curvas de *Loss* permite identificar la estabilidad del entrenamiento de cada arquitectura.
+El gráfico de dispersión permite evaluar la correlación entre los valores reales y las predicciones. Una alineación estrecha con la diagonal roja indica un modelo más preciso.
 
-````carousel
-![Loss GNN Dense](plots/GNN_Internet_Dense/plot_1.png)
-<!-- slide -->
-![Loss ConvLSTM](plots/ConvLSTM/plot_1.png)
-<!-- slide -->
-![Loss CNN Internet](plots/CNN_Internet/plot_1.png)
-````
+### Modelos de Alto Rendimiento (GNN & ConvLSTM)
+
+| GNN Internet Dense | ConvLSTM |
+|:---:|:---:|
+| ![GNN Internet Dense Scatter](plots/GNN_Internet_Dense/plot_4.png) | ![ConvLSTM Scatter](plots/ConvLSTM/plot_6.png) |
+
+### Modelos Base y CNN
+
+| Prediction Model (Internet) | CNN Internet |
+|:---:|:---:|
+| ![prediction_model_internet Scatter](plots/prediction_model_internet/plot_5.png) | ![CNN Internet Scatter](plots/CNN_Internet/plot_5.png) |
+
+| CNN Dense Internet | GNN Internet (Baseline) |
+|:---:|:---:|
+| ![CNN Dense Internet Scatter](plots/CNN_Dense_Internet/plot_5.png) | ![GNN Internet Scatter](plots/GNN_Internet/plot_4.png) |
 
 ---
 
-## 4. Conclusiones Finales
+## 4. Curvas de Pérdida (Convergencia)
 
-1.  **Ganador por Precisión:** El modelo **GNN_Internet_Dense** es el más robusto, alcanzando un **90.37% de Accuracy**. Su arquitectura de grafos le permite aprovechar la estructura espacial de las cuadrículas de la ciudad.
-2.  **Rendimiento Temporal:** **ConvLSTM** se posiciona como una excelente alternativa, destacando por su capacidad para modelar dependencias temporales complejas a largo plazo.
-3.  **Optimizaciones:** La inclusión de conexiones residuo/compactas (arquitectura **Dense**) ha demostrado ser clave para superar los resultados de los baselines secuenciales (CNN estándar).
-4.  **Calidad Visual:** Todas las visualizaciones han sido estandarizadas a un formato cuadrado de alta densidad para facilitar la auditoría visual y comparación directa.
+La comparación de las curvas de *Loss* permite identificar la estabilidad del entrenamiento para todos los modelos.
+
+| GNN Internet Dense | ConvLSTM | CNN Internet |
+|:---:|:---:|:---:|
+| ![Loss GNN Dense](plots/GNN_Internet_Dense/plot_1.png) | ![Loss ConvLSTM](plots/ConvLSTM/plot_1.png) | ![Loss CNN Internet](plots/CNN_Internet/plot_1.png) |
+
+| Prediction Model | GNN Internet (Base) | CNN Dense Internet |
+|:---:|:---:|:---:|
+| ![Loss Pred Model](plots/prediction_model_internet/plot_1.png) | ![Loss GNN Base](plots/GNN_Internet/plot_1.png) | ![Loss CNN Dense](plots/CNN_Dense_Internet/plot_1.png) |
+
+---
+
+## 5. Conclusiones Finales
+
+1.  **Ganador por Precisión:** El modelo **GNN_Internet_Dense** es el más robusto, alcanzando un **90.37% de Accuracy**.
+2.  **Rendimiento Temporal:** **ConvLSTM** destaca por su capacidad para modelar dependencias temporales complejas.
+3.  **Arquitectura:** La inclusión de conexiones residuo/compactas (**Dense**) mejora significativamente la estabilidad.
